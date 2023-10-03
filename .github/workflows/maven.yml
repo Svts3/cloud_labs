@@ -39,7 +39,7 @@ jobs:
         mvn --version
     - name: Copy .env to apploication.properties
       run: |
-       cat .env >> ./_work/cloud_labs/cloud_labs/src/main/resources/application.properties
+       cat .env >> /home/ec2-user/actions-runner/_work/cloud_labs/cloud_labs/src/main/resources
     - name: Build with Maven
       run: mvn -B package --file pom.xml
       
