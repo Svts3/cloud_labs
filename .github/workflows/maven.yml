@@ -30,7 +30,6 @@ jobs:
     - run: |
         touch .env
         echo "${{secrets.PROD_ENV_FILE}}" > .env
-        cat .env >> ./_work/cloud_labs/cloud_labs/src/main/resources/application.properties
 
     - name: Install Maven
       run: |
@@ -38,7 +37,9 @@ jobs:
         sudo sed -i 's/\$releasever/6/g' /etc/yum.repos.d/epel-apache-maven.repo
         sudo yum install -y apache-maven
         mvn --version
-    
+    - name: Copy .env to apploication.properties
+      run: |
+       cat .env >> ./_work/cloud_labs/cloud_labs/src/main/resources/application.properties
     - name: Build with Maven
       run: mvn -B package --file pom.xml
       
