@@ -27,10 +27,8 @@ public class Owner {
     @Column(name = "date_of_birth")
     private LocalDate dateOfBirth;
     private String gender;
-
-    @ManyToOne
-    @JoinColumn(name = "role_id", referencedColumnName = "id")
-    private Role role;
+    private String email;
+    private String password;
 
     @OneToMany(mappedBy = "owner")
     private List<PropertyInfo> propertyInfos;

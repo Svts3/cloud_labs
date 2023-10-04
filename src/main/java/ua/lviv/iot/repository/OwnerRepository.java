@@ -21,6 +21,8 @@ public interface OwnerRepository extends JpaRepository<Owner, Long> {
     @Procedure(procedureName = "create_databases_for_each_owner")
     void createDatabasesForEachOwner();
 
+    Optional<Owner>findByEmail(String email);
 
+    Boolean existsByEmail(String email);
 
 }

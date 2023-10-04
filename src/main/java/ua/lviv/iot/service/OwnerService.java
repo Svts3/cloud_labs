@@ -14,7 +14,9 @@ public interface OwnerService extends GeneralService<Owner, Long> {
 
     List<Watch> findAllWatchesByOwnerId(Long ownerId);
 
+    Owner findByEmail(String email) throws Exception;
 
+    Boolean existsByEmail(String email)throws Exception;
 
     void ownerInsertion();
 

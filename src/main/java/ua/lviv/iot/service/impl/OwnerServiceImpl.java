@@ -103,5 +103,16 @@ public class OwnerServiceImpl implements OwnerService {
         return watches;
     }
 
+    @Override
+    public Owner findByEmail(String email) throws Exception {
+        return ownerRepository.findByEmail(email)
+                .orElseThrow(()->new Exception(String.format("User with email [%s] was not found!", email)));
+    }
+
+    @Override
+    public Boolean existsByEmail(String email) throws Exception {
+        return ownerRepository.existsByEmail(email);
+    }
+
 
 }
