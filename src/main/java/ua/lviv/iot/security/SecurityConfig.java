@@ -29,6 +29,7 @@ public class SecurityConfig {
             }
         });
         http.logout(httpSecurityLogoutConfigurer -> httpSecurityLogoutConfigurer.init(http));
+
         return http.build();
     }
 
