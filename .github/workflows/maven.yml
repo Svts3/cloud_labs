@@ -40,8 +40,22 @@ jobs:
     - name: Copy .env to apploication.properties
       run: |
        cat .env >> /home/ec2-user/actions-runner/_work/cloud_labs/cloud_labs/src/main/resources/application.properties
+    - name: Stop Spring Boot app
+      run: |
+        PID=$(ps aux | grep "DB_lab5-0.0.1-SNAPSHOT.jar" | grep -v grep | awk '{print $2}')
+        
+        if [ -n "$PID" ]; then
+          echo "Stopping Spring Boot application with PID $PID"
+          kill "$PID"
+        else
+          echo "Spring Boot application is not running."
+        fi
+         
     - name: Build with Maven
       run: mvn -B package --file pom.xml
+    - name: Run Spring Boot app
+      run: |
+        java -jar /home/ec2-user/actions-runner/_work/cloud_labs/cloud_labs/target/DB_lab5-0.0.1-SNAPSHOT.jar
       
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
