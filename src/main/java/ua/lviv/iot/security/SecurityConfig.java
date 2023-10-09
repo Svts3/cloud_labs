@@ -26,7 +26,7 @@ public class SecurityConfig {
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
-            httpSecurityFormLoginConfigurer.successForwardUrl("/swagger-ui/index.html");
+            httpSecurityFormLoginConfigurer.defaultSuccessUrl("/swagger-ui/index.html", true);
         });
         http.logout(httpSecurityLogoutConfigurer -> httpSecurityLogoutConfigurer.init(http));
 
